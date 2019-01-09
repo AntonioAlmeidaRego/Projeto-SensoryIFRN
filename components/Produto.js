@@ -8,15 +8,21 @@ import {
   Modal,
   TextInput
 } from 'react-native'; 
- 
+
 type Props = {};
-export default class AddSensoryModel extends Component<Props> {
-    
+export default class Produto extends Component<Props> {
+
     state={
-        nomeInstituicao: '',
-        tituloPrjeto: '',
-        nomeProfessorOrientador: '',
-        nomeAlunoResponsavelDesenvolverProjeto: '',
+        nomeProduto: '',
+    }
+
+    verificar = async (nome) => {
+        if(nome != ''){
+            this.props.navigation.navigate("CadastrarSensoryScreen", {nomep: nome});
+        } else{
+            alert("Preencha o Campo com o nome do Produto");
+        }
+
     }
 
     render(){
@@ -26,35 +32,14 @@ export default class AddSensoryModel extends Component<Props> {
                     <View style={styles.boxContainer}>
                         <TextInput
                             style={styles.boxTextInput}
-                            placeholder="Nome da Instituição"  
+                            placeholder="Nome do Produto"  
                             autoFocus
-                            value={this.state.nomeInstituicao}
-                            onChangeText={nomeInstituicao => this.setState({nomeInstituicao})}                          
+                            value={this.state.nomeProduto}
+                            onChangeText={nomeProduto => this.setState({nomeProduto})}                          
                             />                         
-                        <TextInput 
-                            placeholder="Titulo do Projeto"
-                            style={styles.boxTextInput} 
-                            //autoFocus
-                            value={this.state.tituloPrjeto}
-                            onChangeText={tituloPrjeto => this.setState({tituloPrjeto})}
-                            />
-                        <TextInput 
-                            placeholder="Nome do Professor Orientador"
-                            style={styles.boxTextInput} 
-                            //autoFocus
-                            value={this.state.nomeProfessorOrientador}
-                            onChangeText={nomeProfessorOrientador => this.setState({nomeProfessorOrientador})}
-                            />  
-                              
-                         <TextInput 
-                            placeholder="Nome do Aluno responsavel pelo desenvolvimento do Projeto"
-                            style={styles.boxTextInput} 
-                            //autoFocus
-                            value={this.state.nomeAlunoResponsavelDesenvolverProjeto}
-                            onChangeText={nomeAlunoResponsavelDesenvolverProjeto => this.setState({nomeAlunoResponsavelDesenvolverProjeto})}
-                            />        
+                        
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => this.props.onAdd(this.state.nomeInstituicao, this.state.tituloPrjeto, this.state.nomeProfessorOrientador, this.state.nomeAlunoResponsavelDesenvolverProjeto)} style={[styles.button, styles.buttonAdd]}>
+                            <TouchableOpacity onPress={() => this.verificar(this.state.nomeProduto)} style={[styles.button, styles.buttonAdd]}>
                                 <Text style={styles.boxTex}>Adicionar</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this.props.onCancel} style={[styles.button, styles.buttonCancel]}>
@@ -66,7 +51,9 @@ export default class AddSensoryModel extends Component<Props> {
             </Modal>
         );
     }
+
 }
+
 
 const styles = StyleSheet.create({
     container:{

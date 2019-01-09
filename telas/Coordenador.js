@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Image, AsyncStorage} from 'react-native';
 import Sensory from '../components/Sensory';
 import AddSensoryModel from '../components/AddSensoryModel';
+import Produto from '../components/Produto';
 type Props = {};
 export default class Coordenador extends Component<Props> {
 
@@ -60,7 +61,7 @@ export default class Coordenador extends Component<Props> {
                         <Sensory key={sensory.id} nomeInstituicao={sensory.nomeInstituicao} nomeProfessorOrientador={sensory.nomeProfessorOrientador} />    
                     )}
                     </ScrollView>      
-                <AddSensoryModel visible={this.state.modalVisible} onAdd={this.addSensory} onCancel={() => this.setState({modalVisible: false})}/>
+                <Produto visible={this.state.modalVisible} onCancel={() => this.setState({modalVisible: false})}/>
             </View>
         );
     }    
