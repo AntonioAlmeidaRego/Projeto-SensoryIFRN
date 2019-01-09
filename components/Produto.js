@@ -18,7 +18,7 @@ export default class Produto extends Component<Props> {
 
     verificar = async (nome) => {
         if(nome != ''){
-            this.props.navigation.navigate("CadastrarSensoryScreen", {nomep: nome});
+            this.props.navigation.navigate('CadastrarSensoryScreen', {nomepro: this.props.nome});
         } else{
             alert("Preencha o Campo com o nome do Produto");
         }
@@ -39,7 +39,7 @@ export default class Produto extends Component<Props> {
                             />                         
                         
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => this.verificar(this.state.nomeProduto)} style={[styles.button, styles.buttonAdd]}>
+                            <TouchableOpacity onPress={() => this.props.onAdd(this.state.nomeProduto)} style={[styles.button, styles.buttonAdd]}>
                                 <Text style={styles.boxTex}>Adicionar</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this.props.onCancel} style={[styles.button, styles.buttonCancel]}>

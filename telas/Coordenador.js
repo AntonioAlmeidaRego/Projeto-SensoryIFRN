@@ -25,6 +25,17 @@ export default class Coordenador extends Component<Props> {
         sensoryIFRN: [],
     };
 
+    addProduto = async (nome) => {
+        
+        if(nome != ''){
+            this.setState({
+                modalVisible: false});
+            this.props.navigation.navigate('CadastrarSensoryScreen', {nomepro: nome});
+        } else{
+            alert("Preencha o Campo com o nome do Produto");
+        }
+    }
+
 
     addSensory = async(nomeInstituicao, tituloPrjeto,nomeProfessorOrientador, nomeAlunoResponsavelDesenvolverProjeto) =>{
         const sensory = {
@@ -61,7 +72,7 @@ export default class Coordenador extends Component<Props> {
                         <Sensory key={sensory.id} nomeInstituicao={sensory.nomeInstituicao} nomeProfessorOrientador={sensory.nomeProfessorOrientador} />    
                     )}
                     </ScrollView>      
-                <Produto visible={this.state.modalVisible} onCancel={() => this.setState({modalVisible: false})}/>
+                <Produto visible={this.state.modalVisible} onAdd={this.addProduto} onCancel={() => this.setState({modalVisible: false})}/>
             </View>
         );
     }    
