@@ -14,6 +14,7 @@ export default class AddSensoryModel extends Component<Props> {
     
     state={
         nomeInstituicao: '',
+        Laboratoriolocal: '',
         tituloPrjeto: '',
         nomeProfessorOrientador: '',
         nomeAlunoResponsavelDesenvolverProjeto: '',
@@ -30,6 +31,13 @@ export default class AddSensoryModel extends Component<Props> {
                             autoFocus
                             value={this.state.nomeInstituicao}
                             onChangeText={nomeInstituicao => this.setState({nomeInstituicao})}                          
+                            />  
+                        <TextInput
+                            style={styles.boxTextInput}
+                            placeholder="Nome da Laboratório"  
+                            //autoFocus
+                            value={this.state.Laboratoriolocal}
+                            onChangeText={Laboratoriolocal => this.setState({Laboratoriolocal})}                          
                             />                         
                         <TextInput 
                             placeholder="Titulo do Projeto"
@@ -54,7 +62,7 @@ export default class AddSensoryModel extends Component<Props> {
                             onChangeText={nomeAlunoResponsavelDesenvolverProjeto => this.setState({nomeAlunoResponsavelDesenvolverProjeto})}
                             />        
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => this.props.onAdd(this.state.nomeInstituicao, this.state.tituloPrjeto, this.state.nomeProfessorOrientador, this.state.nomeAlunoResponsavelDesenvolverProjeto)} style={[styles.button, styles.buttonAdd]}>
+                            <TouchableOpacity onPress={() => this.props.onAdd(this.state.nomeInstituicao, this.state.Laboratoriolocal, this.state.tituloPrjeto, this.state.nomeProfessorOrientador, this.state.nomeAlunoResponsavelDesenvolverProjeto)} style={[styles.button, styles.buttonAdd]}>
                                 <Text style={styles.boxTex}>Adicionar</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this.props.onCancel} style={[styles.button, styles.buttonCancel]}>

@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Image, AsyncStorage} from 'react-native';
 
+import AddSensoryModel from '../components/AddSensoryModel';
 
 type Props = {};
 export default class CadastrarSensoryScreen extends Component<Props> {
 
     state = {
-        checked: true,
+        email: '',
+        usuario: '',
+        modalVisible: false,
+        coordenadors:[],
+        usuarioCoordenador: '',
+        sensoryIFRN: [],
+        produto: this.props.navigation.state.params.nomepro,
         listaCriterios: [
             {
                 id: 1,
@@ -35,18 +42,46 @@ export default class CadastrarSensoryScreen extends Component<Props> {
         ]
     }
 
+    async componentWillMount(){
+        this.setState({modalVisible: true});
+    }
+
+    addSensory = async(nomeInstituicao, Laboratoriolocal, tituloPrjeto,nomeProfessorOrientador, nomeAlunoResponsavelDesenvolverProjeto) =>{
+        const sensory = {
+            id: Math.floor((Math.random() * 1000)),
+            nomeInstituicao: nomeInstituicao,
+            Laboratoriolocal: Laboratoriolocal,
+            tituloPrjeto: tituloPrjeto,
+            nomeProfessorOrientador: nomeProfessorOrientador,
+            nomeAlunoResponsavelDesenvolverProjeto: nomeAlunoResponsavelDesenvolverProjeto,
+            produto: this.props.navigation.state.params.nomepro,
+        }
+
+        await this.setState({
+            modalVisible: false,
+            sensoryIFRN:[
+              ...this.state.sensoryIFRN,
+              sensory,
+            ]
+          });
+          await AsyncStorage.setItem("@CadastrarSensory:sensoryIFRNanalise", JSON.stringify(this.state.sensoryIFRN));
+    }
+
     render() {
         return (
 
             <View>
             <Text>Produto Avaliado: {this.props.navigation.state.params.nomepro}</Text>
-            <Text>Quesitos para serem avaliados</Text>
+            <Text>Quesitos para serem avaliados na analise do produto {this.props.produto} </Text>
             <Text>COR</Text>
             <Text>AROMA</Text>
             <Text>TEXTURA</Text>
             <Text>SABOR</Text>
             <Text>IMPRESSÃO GLOBAL</Text>
+            <AddSensoryModel visible={this.state.modalVisible} 
+            onAdd={this.addSensory} onCancel={() => this.setState({modalVisible: false})}/>
             </View>
+           
 
            
 

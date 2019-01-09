@@ -36,8 +36,21 @@ export default class Coordenador extends Component<Props> {
         }
     }
 
+    async componentDidMount(){
+        try{
+            const sensory = JSON.parse(await AsyncStorage.getItem("@CadastrarSensory:sensoryIFRNanalise")) || [];
+            await this.setState({
+                sensoryIFRN: sensory
+            });
+            alert(sensory);
+        }catch(error){
 
-    addSensory = async(nomeInstituicao, tituloPrjeto,nomeProfessorOrientador, nomeAlunoResponsavelDesenvolverProjeto) =>{
+        }
+        
+    }
+
+
+    /*addSensory = async(nomeInstituicao, tituloPrjeto,nomeProfessorOrientador, nomeAlunoResponsavelDesenvolverProjeto) =>{
         const sensory = {
             id: Math.floor((Math.random() * 1000)),
             nomeInstituicao: nomeInstituicao,
@@ -54,7 +67,7 @@ export default class Coordenador extends Component<Props> {
             ]
           });
           await AsyncStorage.setItem("@CadastrarSensory:sensoryIFRN", JSON.stringify(this.state.sensoryIFRN));
-    }
+    }*/
 
     render() {
         return (
