@@ -39,8 +39,10 @@ export default class Coordenador extends Component<Props> {
     async componentDidMount(){
         try{
             const sensory = JSON.parse(await AsyncStorage.getItem("@CadastrarSensory:sensoryIFRNanalise")) || [];
+            const coordenador = JSON.parse(await AsyncStorage.getItem("@SessaoLogin:sensoryIFRN")) || [];
             await this.setState({
-                sensoryIFRN: sensory
+                sensoryIFRN: sensory,
+                usuarioCoordenador: coordenador
             });
         }catch(error){
 
@@ -72,7 +74,7 @@ export default class Coordenador extends Component<Props> {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Bem-vindo</Text>
+                    <Text style={styles.headerText}>Bem-vindo, {this.state.usuarioCoordenador.email}</Text>
                 </View>
                 <View style={styles.bodyButton}>
                     <TouchableOpacity onPress={() => this.setState({modalVisible: true})} style={styles.buttonAdd}>

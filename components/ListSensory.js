@@ -15,15 +15,13 @@ import {
  
 type Props = {};
 export default class ListSensory extends Component<Props> {
-    avaliar = async(id, nomeProduto)=>{
-        this.props.navigation.navigate('Question', {id: id, nomeProduto: nomeProduto});
-    }
+  
     render(){
         return(
             <View style={styles.container}>
                 <Text style={styles.text}>{this.props.nomeInstituicao}</Text>
                 <Text style={styles.text}>{this.props.nomeProduto}</Text>         
-                <TouchableOpacity onPress={() => this.avaliar(this.props.id, this.props.nomeProduto)} style={styles.buttonAdd}>
+                <TouchableOpacity onPress={() => this.props.onParticipar(this.props.id, this.props.nomeProduto)} style={styles.buttonAdd}>
                     <Text style={styles.buttonText}>Participar da Análise</Text>
                 </TouchableOpacity>  
             </View>

@@ -85,22 +85,46 @@ export default class CadastrarSensoryScreen extends Component<Props> {
             ]
           });
           await AsyncStorage.setItem("@CadastrarSensory:sensoryIFRNanalise", JSON.stringify(this.state.sensoryIFRN));
+          alert("Adicionado com Sucesso");
+          this.props.navigation.navigate("Coordenador");
     }
 
     render() {
         return (
 
-            <View>
-            <Text>Produto Avaliado: {this.props.navigation.state.params.nomepro}</Text>
-            <Text>Quesitos para serem avaliados na analise do produto {this.props.produto} </Text>
-            <Text>COR</Text>
-            <Text>AROMA</Text>
-            <Text>TEXTURA</Text>
-            <Text>SABOR</Text>
-            <Text>IMPRESSÃO GLOBAL</Text>
+            <View style={styles.container}>
+            <Text style={styles.text}>Produto Avaliado: {this.props.navigation.state.params.nomepro}</Text>
+            <Text style={styles.info}>Quesitos para serem avaliados na analise do produto {this.props.produto} </Text>
+            <Text style={styles.info}>COR</Text>
+            <Text style={styles.info}>AROMA</Text>
+            <Text style={styles.info}>TEXTURA</Text>
+            <Text style={styles.info}>SABOR</Text>
+            <Text style={styles.info}>IMPRESSÃO GLOBAL</Text>
             <AddSensoryModel visible={this.state.modalVisible} 
             onAdd={this.addSensory} onCancel={() => this.setState({modalVisible: false})}/>
             </View>
         );
     }    
 }    
+
+const styles = StyleSheet.create({
+    container:{
+        margin: 20,
+        padding: 15,      
+        backgroundColor: '#fff',
+        borderRadius: 20,
+      },
+      text:{
+        color: '#000',
+        fontWeight: 'bold',
+        textAlign: 'center',   
+        fontSize: 18,
+      },
+      info:{
+        color: '#000',
+        fontSize: 14,
+        textAlign: 'center',   
+      },
+ 
+ 
+});

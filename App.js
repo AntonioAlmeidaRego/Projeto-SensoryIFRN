@@ -14,6 +14,7 @@ import LogoutScreen from './telas/LogoutScreen';
 import CadastrarSensoryScreen from './telas/CadastrarSensoryScreen';
 import ListSensory from './components/ListSensory';
 import Question from './components/Question';
+import ListParticipantes from './telas/ListParticipantes';
  
 
 type Props = {};
@@ -40,6 +41,7 @@ const DrawerAdmin = createDrawerNavigator(
 const DrawerCoordenador = createDrawerNavigator(
   {
     Coordenador: Coordenador,
+    ListParticipantes: ListParticipantes,
     LogoutScreen: LogoutScreen,
   },
   {

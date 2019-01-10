@@ -138,8 +138,7 @@ export default class LoginScreen extends Component<Props> {
                       <TextInput 
                           secureTextEntry={true}
                           placeholder="Senha"
-                          style={styles.boxTextInput} 
-                          autoFocus
+                          style={styles.boxTextInput}                            
                           value={this.state.senha}
                           onChangeText={senha => this.setState({senha})}
                           />

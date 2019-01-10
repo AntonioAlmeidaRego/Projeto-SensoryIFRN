@@ -6,27 +6,55 @@ import ListSensory from '../components/ListSensory';
 type Props = {};
 export default class Participante extends Component<Props> {
 
+    static navigationOptions = {
+        drawerLabel: 'Home',
+        drawerIcon: ({ tintColor }) => (
+              <Image
+                  source={require('../imagens/home.png')}
+                  style={styles.icon}        
+              />
+        ),
+    };
+
+    constructor(props){
+        super(props);      
+       
+        this.participar = this.participar.bind(this);
+    }
+  
+
     state={
-        sensoryIFRN: []
+        sensoryIFRN: [],
+        usuario: '',
     }
 
     async componentDidMount(){
         const sensory = JSON.parse(await AsyncStorage.getItem("@CadastrarSensory:sensoryIFRNanalise")) || [];
+        const participante = JSON.parse(await AsyncStorage.getItem("@SessaoLogin:sensoryIFRN")) || [];
         this.setState({
-            sensoryIFRN: sensory             
+            sensoryIFRN: sensory,
+            usuario: participante             
         });
+    }
+
+    participar(id, produto){
+        this.props.navigation.navigate('Question', {id: id, produto:produto});
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Bem-vindo</Text>                    
+                    <Text style={styles.headerText}>Bem-vindo, {this.state.usuario.email}</Text>                    
                 </View>
+                <ScrollView>
                 {this.state.sensoryIFRN.map(sensory =>
-                        <ListSensory key={sensory.id} id={sensory.id} nomeInstituicao={sensory.nomeInstituicao} nomeProduto={sensory.produto}>
+                        <ListSensory key={sensory.id} id={sensory.id} nomeInstituicao={sensory.nomeInstituicao}
+                        onParticipar={this.participar.bind(this, sensory.id, sensory.produto)} nomeProduto={sensory.produto}>
                         </ListSensory>                          
                     )}
+                </ScrollView>
+                <View></View>
             </View>
         );
     }    
