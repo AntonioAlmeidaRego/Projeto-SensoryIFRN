@@ -12,6 +12,9 @@ import Coordenador from './telas/Coordenador';
 import Participante from './telas/Participante';
 import LogoutScreen from './telas/LogoutScreen';
 import CadastrarSensoryScreen from './telas/CadastrarSensoryScreen';
+import ListSensory from './components/ListSensory';
+import Question from './components/Question';
+ 
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -46,6 +49,7 @@ const DrawerCoordenador = createDrawerNavigator(
 
 const DrawerParticipante = createDrawerNavigator(
   {
+    
     Participante: Participante,
     LogoutScreen: LogoutScreen,
   },
@@ -65,7 +69,8 @@ const StackAdmin = createStackNavigator(
 
 const StackCoordenador = createStackNavigator(
   {
-    CadastrarSensoryScreen: CadastrarSensoryScreen,    
+    CadastrarSensoryScreen: CadastrarSensoryScreen, 
+    
     DrawerCoordenador: DrawerCoordenador,
   },
   {
@@ -75,6 +80,8 @@ const StackCoordenador = createStackNavigator(
 
 const StackParticipante = createStackNavigator(
   {
+    Question: Question,
+    ListSensory: ListSensory,
     DrawerParticipante: DrawerParticipante,
   },
   {

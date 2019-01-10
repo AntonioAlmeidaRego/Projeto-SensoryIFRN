@@ -43,10 +43,30 @@ export default class CadastrarSensoryScreen extends Component<Props> {
     }
 
     async componentWillMount(){
-        this.setState({modalVisible: true});
+        const sensory = JSON.parse(await AsyncStorage.getItem("@CadastrarSensory:sensoryIFRNanalise")) || [];
+        this.setState({
+            sensoryIFRN: sensory, 
+            modalVisible: true
+        });
     }
 
     addSensory = async(nomeInstituicao, Laboratoriolocal, tituloPrjeto,nomeProfessorOrientador, nomeAlunoResponsavelDesenvolverProjeto) =>{
+        /*fetch('http://localhost:9000/api/addSensory/', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nomeInstituicao: nomeInstituicao,
+                Laboratoriolocal: Laboratoriolocal,
+                tituloPrjeto: tituloPrjeto,
+                nomeProfessorOrientador: nomeProfessorOrientador,
+                nomeAlunoResponsavelDesenvolverProjeto: nomeAlunoResponsavelDesenvolverProjeto,
+                produto: this.props.navigation.state.params.nomepro,
+            })
+        })*/
+        
         const sensory = {
             id: Math.floor((Math.random() * 1000)),
             nomeInstituicao: nomeInstituicao,
@@ -81,10 +101,6 @@ export default class CadastrarSensoryScreen extends Component<Props> {
             <AddSensoryModel visible={this.state.modalVisible} 
             onAdd={this.addSensory} onCancel={() => this.setState({modalVisible: false})}/>
             </View>
-           
-
-           
-
         );
     }    
 }    

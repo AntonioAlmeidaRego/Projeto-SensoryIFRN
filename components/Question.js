@@ -4,7 +4,7 @@ import {Platform, Text, View, StyleSheet, TextInput, ImageBackground, TouchableO
  
  
 type Props = {};
-export default class CadastroScreen extends Component<Props> {
+export default class Question extends Component<Props> {
 
     
 
@@ -126,7 +126,7 @@ export default class CadastroScreen extends Component<Props> {
            
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.headerTex}>Cadastro de Participante</Text>
+                    <Text style={styles.headerTex}>Robinho ajeite essa parte</Text>
                 </View>
                 
                 <ScrollView>  

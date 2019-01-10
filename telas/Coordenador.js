@@ -42,7 +42,6 @@ export default class Coordenador extends Component<Props> {
             await this.setState({
                 sensoryIFRN: sensory
             });
-            alert(sensory);
         }catch(error){
 
         }

@@ -30,20 +30,12 @@ export default class LoginScreen extends Component<Props> {
   };
 
   async componentDidMount(){
-    try {
-      const participante = JSON.parse(await AsyncStorage.getItem("@CadastroSensory:sensoryIFRN")) || [];
-      await  this.setState({
-          participantes: participante
-        });   
-     
-     const coordenador = JSON.parse(await AsyncStorage.getItem("@CadastrarCoordenador:sensoryIFRN")) || [];
-     await this.setState({
+      const participante = JSON.parse(await AsyncStorage.getItem("@CadastroSensory:sensoryIFRNparticipante")) || [];
+      const coordenador = JSON.parse(await AsyncStorage.getItem("@CadastrarCoordenador:sensoryIFRN")) || [];
+        this.setState({
+          participantes: participante,
           coordenadors: coordenador
-        });
- 
-    } catch (error) {
-      alert(error);
-    }
+        });   
   }
 
   verificarParticipante(email, senha){

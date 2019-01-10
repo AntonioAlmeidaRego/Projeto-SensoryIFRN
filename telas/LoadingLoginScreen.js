@@ -29,7 +29,7 @@ export default class LoadingLoginScreen extends Component<Props> {
 
   async componentDidMount(){
       const usuarios = JSON.parse(await AsyncStorage.getItem("@SessaoLogin:sensoryIFRN")) || [];
-      const participants = JSON.parse(await AsyncStorage.getItem("@CadastroSensory:sensoryIFRN")) || [];
+      const participants = JSON.parse(await AsyncStorage.getItem("@CadastroSensory:sensoryIFRNparticipante")) || [];
       const coordenadors = JSON.parse(await AsyncStorage.getItem("@CadastrarCoordenador:sensoryIFRN")) || [];
 
       if(usuarios != ''){

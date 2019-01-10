@@ -19,7 +19,7 @@ export default class Sensory extends Component<Props> {
         return(
             <View style={styles.container}>
                 <Text style={styles.text}>{this.props.nomeInstituicao}</Text>
-                <Text style={styles.text}>{this.props.nomeProfessorOrientador}</Text>
+                <Text style={styles.text}>{this.props.nomeProfessorOrientador}</Text>               
             </View>
         );
     }
